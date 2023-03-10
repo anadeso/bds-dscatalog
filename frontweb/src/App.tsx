@@ -1,10 +1,14 @@
 import './assets/styles/custom.scss';
+import NavBar from 'components/NavBar';
 import './App.css';
 
-function App() {
+const App = () => {
   return (
-   <h1 className="bg-primary text-white">Olá DSCatalog</h1>
-  );
+    <>
+      <NavBar/>
+      <></>
+    </>
+  )
 }
 
 export default App;
