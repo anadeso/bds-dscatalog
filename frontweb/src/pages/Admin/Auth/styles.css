@@ -59,7 +59,6 @@
 }
 
 @media (min-width: 1400px) {
-
     .auth-banner-container {
         width: 650px;
     }
@@ -72,5 +71,4 @@
     .auth-banner-container p {
         font-size: 24px;
     }
-
 }
