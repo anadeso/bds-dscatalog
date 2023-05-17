@@ -11,6 +11,7 @@ const Users = () => {
     const params : AxiosRequestConfig = {
       url: '/users',
       withCredentials: true,
+      
       params: {
         page: 0,
         size: 12,
