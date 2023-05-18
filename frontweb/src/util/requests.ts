@@ -102,11 +102,15 @@ axios.interceptors.response.use(function (response) {
 });
 
 export const getTokenData = () : TokenData | undefined => {
-
     try {
         // queremos um retorno do tipo TokenData
         return jwtDecode(getAuthData().access_token) as TokenData;
     } catch(error) {
         return undefined;
     }
+}
+
+export const isAuthenticated = () : boolean => {
+    const tokenData = getTokenData();
+    return (tokenData && tokenData.exp * 1000 > Date.now()) ? true : false;
 }
