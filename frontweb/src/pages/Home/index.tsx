@@ -3,21 +3,10 @@ import ButtonIcon from 'components/ButtonIcon';
 import { Link } from 'react-router-dom';
 
 import './styles.css';
-import { getTokenData } from 'util/requests';
-import TestChildren from 'components/TestChildren';
-import { Children } from 'react';
 
 const Home = () => {
   return (
     <div className="home-container">
-
-      <TestChildren price={9}> 
-        <h2>Conteúdo 1</h2>
-        <h2>Conteúdo 2</h2>
-      </TestChildren>
-
-      <h1>{getTokenData()?.user_name}</h1>
-
       <div className="base-card home-card">
         <div className="home-content-container">
           <div>
