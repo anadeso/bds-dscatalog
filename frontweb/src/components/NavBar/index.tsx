@@ -7,11 +7,6 @@ import { TokenData, getTokenData, isAuthenticated, removeAuthData } from 'util/r
 import { useEffect, useState } from 'react';
 import history from 'util/history';
 
-type AuthData = { 
-  authenticated: boolean,
-  tokenData?: TokenData;
-}
-
 const NavBar = () => {
   // Criando estado 
   const [authData, setAuthData] = useState<AuthData>({authenticated: false});
