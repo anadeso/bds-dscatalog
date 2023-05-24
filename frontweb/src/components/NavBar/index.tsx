@@ -3,8 +3,42 @@ import '@popperjs/core';
 import 'bootstrap/js/src/collapse';
 
 import { Link, NavLink } from 'react-router-dom';
+import { TokenData, getTokenData, isAuthenticated, removeAuthData } from 'util/requests';
+import { useEffect, useState } from 'react';
+import history from 'util/history';
+
+type AuthData = { 
+  authenticated: boolean,
+  tokenData?: TokenData;
+}
 
 const NavBar = () => {
+  // Criando estado 
+  const [authData, setAuthData] = useState<AuthData>({authenticated: false});
+
+  useEffect(() => {
+    if (isAuthenticated()) {
+      setAuthData({
+        authenticated: true, 
+        tokenData: getTokenData(),
+      })
+    } else {
+      setAuthData({
+        authenticated: false
+      })
+    }
+  }, [])
+
+  // criando funcao
+  const handleLogoutClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    removeAuthData();
+    setAuthData({
+      authenticated: false
+    });
+    history.replace('/');
+  }
+
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-primary main-nav">
       <div className="container-fluid">
@@ -42,6 +76,20 @@ const NavBar = () => {
               </NavLink>
             </li>
           </ul>
+        </div>
+        <div>
+          {authData.authenticated  ? (
+            <>
+              <span>{authData.tokenData?.user_name}</span>
+              <a href="#logout" onClick={handleLogoutClick}>
+                LOGOUT
+              </a>
+             </>
+          ) : (
+            <Link to="/admin/auth">
+              LOGIN
+            </Link>
+          )}  
         </div>
       </div>
     </nav>
